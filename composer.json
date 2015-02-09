@@ -1,0 +1,23 @@
+{
+    "name": "bouncefirst/hiveage",
+    "description": "Nacho, nacho man. I want to be a nacho man",
+    "license": "MIT",
+    "keywords": ["nacho"],
+    "authors": [
+        {
+            "name": "Lance Pioch",
+            "email": "lance@bouncefirst.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "5.2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bouncefirst\\Hiveage\\": "src"
+        }
+    }
+}
