@@ -1,8 +1,8 @@
 {
     "name": "bouncefirst/hiveage",
-    "description": "Nacho, nacho man. I want to be a nacho man",
+    "description": "Hiveage.com API",
     "license": "MIT",
-    "keywords": ["nacho"],
+    "keywords": ["bouncefirst", "hiveage", "api"],
     "authors": [
         {
             "name": "Lance Pioch",
