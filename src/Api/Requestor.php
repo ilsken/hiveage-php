@@ -1,20 +1,26 @@
 <?php namespace Bouncefirst\Hiveage\Api;
 
 use Exception;
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
 class Requestor
 {
     const PROTOCOL = 'https://';
     const API = '.hiveage.com/api/';
-    private $base;
 	private $http;
+    private $name;
 
-	public function __construct(ClientInterface $http, $username)
+	public function __construct($username, ClientInterface $client = null)
 	{
-        $this->base = self::PROTOCOL . $username . self::API;
-		$this->http = $http;
-        $this->http->setDefaultOption('base_url', $this->base);
+        $this->name = $username;
+        if ($client === null) {
+            $this->http = new Client(['base_url' => self::PROTOCOL . $this->name . self::API]);
+        } else {
+            $this->http = $client;
+        }
+        $this->http->setDefaultOption('verify', false);
+        $this->http->setDefaultOption('headers/Accept' , 'application/json');
 	}
 
     public function setKey($key)
@@ -30,11 +36,6 @@ class Requestor
         } catch (Exception $exception) {
             return false;
         }
-    }
-
-    public function getBaseUrl()
-    {
-        return $this->base;
     }
 
     public function getHttp()
