@@ -1,5 +1,6 @@
 <?php namespace Bouncefirst\Hiveage\Api;
 
+use Bouncefirst\Hiveage\Models\Base;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -32,6 +33,16 @@ class Requestor
     {
         try {
             $request = $this->http->createRequest($model);
+            return $request->getBody();
+        } catch (Exception $exception) {
+            return false;
+        }
+    }
+
+    public function getModels($model)
+    {
+        try {
+            $request = $this->getHttp()->get($model);
             return $request->getBody();
         } catch (Exception $exception) {
             return false;
