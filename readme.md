@@ -1,5 +1,7 @@
 #Hiveage.com API
 
+[![Build Status](https://travis-ci.org/Bouncefirst/hiveage-php.svg?branch=master)](https://travis-ci.org/Bouncefirst/hiveage-php)
+
 Actual API documentation found here: http://www.hiveage.com/api/
 
 ## Installation
