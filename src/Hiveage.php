@@ -1,9 +1,9 @@
 <?php namespace Bouncefirst\Hiveage;
 
 use Bouncefirst\Hiveage\Api\Requestor;
+use Bouncefirst\Hiveage\Models\Bill;
 use Bouncefirst\Hiveage\Models\Connection;
 use Bouncefirst\Hiveage\Models\Estimate;
-use Bouncefirst\Hiveage\Models\Expense;
 use Bouncefirst\Hiveage\Models\Invoice;
 use Bouncefirst\Hiveage\Models\Item;
 use Bouncefirst\Hiveage\Models\RecurringBill;
@@ -41,9 +41,9 @@ class Hiveage
         return $model->all();
     }
 
-    public function getExpenses()
+    public function getBills()
     {
-        $model = new Expense;
+        $model = new Bill;
         $model->setRequestor($this->requestor);
         return $model->all();
     }
