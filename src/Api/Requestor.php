@@ -29,20 +29,10 @@ class Requestor
         $this->http->setDefaultOption('auth', [$key, '']);
     }
 
-    public function getModel($model)
+    public function get($model, $options = null)
     {
         try {
-            $request = $this->http->createRequest($model);
-            return $request->getBody();
-        } catch (Exception $exception) {
-            return false;
-        }
-    }
-
-    public function getModels($model)
-    {
-        try {
-            $request = $this->getHttp()->get($model);
+            $request = $this->getHttp()->createRequest($model, $options);
             return $request->getBody();
         } catch (Exception $exception) {
             return false;

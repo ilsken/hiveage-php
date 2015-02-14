@@ -9,6 +9,7 @@ abstract class Base implements ArrayAccess
     private $requestor;
     protected $name;
     protected $namePlural;
+    protected $idType;
 
     public function __construct($attributes = [])
     {
@@ -20,6 +21,11 @@ abstract class Base implements ArrayAccess
         if (is_array($attributes)) {
             $this->attributes = $attributes;
         }
+    }
+
+    public function getRequestor()
+    {
+        return $this->requestor;
     }
 
     public function setRequestor(Requestor $requestor)
@@ -34,7 +40,7 @@ abstract class Base implements ArrayAccess
 
     public function find($id)
     {
-        $model = $this->requestor->getModel($this->name);
+        $model = $this->getRequestor()->get($this->name, [$this->idType => $id]);
 
         if ($model)
             return $model;
@@ -88,7 +94,7 @@ abstract class Base implements ArrayAccess
     public function all($perPage = 20, $page = 1, $order = 'asc')
     {
         $class = get_called_class();
-        $json = $this->requestor->getModels($this->name);
+        $json = $this->getRequestor()->get($this->name);
         $objects = json_decode($json, true);
         $models = $objects[$this->namePlural];
         $modelArray = [];
