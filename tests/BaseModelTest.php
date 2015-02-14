@@ -1,7 +1,5 @@
 <?php
 
-use Bouncefirst\Hiveage\Api\Requestor;
-
 class BaseModelTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructionWithArray()

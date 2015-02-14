@@ -1,6 +1,5 @@
 <?php namespace Bouncefirst\Hiveage\Api;
 
-use Bouncefirst\Hiveage\Models\Base;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
