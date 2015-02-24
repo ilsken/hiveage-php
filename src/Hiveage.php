@@ -10,6 +10,7 @@ use Bouncefirst\Hiveage\Models\RecurringBill;
 use Bouncefirst\Hiveage\Models\RecurringInvoice;
 use Bouncefirst\Hiveage\Models\Task;
 use Bouncefirst\Hiveage\Models\Time;
+use GuzzleHttp\Client;
 
 class Hiveage
 {
@@ -22,7 +23,9 @@ class Hiveage
             return;
         }
 
-        $requestor = new Requestor($orgName);
+        $http = new Client(['base_url' => Requestor::getApiUrl($orgName)]);
+        $http->setDefaultOption('verify', false);
+        $requestor = new Requestor($http);
         $requestor->setKey($apiKey);
         $this->requestor = $requestor;
 	}

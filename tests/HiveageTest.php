@@ -4,8 +4,9 @@ class HiveageTest extends PHPUnit_Framework_TestCase
 {
     public function testRetrieveModels()
     {
+        $http = $this->getMock('GuzzleHttp\ClientInterface');
         $methods = ['getConnections', 'getEstimates', 'getBills', 'getInvoices', 'getItems', 'getRecurringBills', 'getRecurringInvoices', 'getTasks', 'getTimes'];
-        $requestor = $this->getMock('Bouncefirst\Hiveage\Api\Requestor', [], ['test']);
+        $requestor = $this->getMock('Bouncefirst\Hiveage\Api\Requestor', [], [$http]);
         $requestor->expects($this->exactly(count($methods)))->method('get');
         $hiveage = new \Bouncefirst\Hiveage\Hiveage($requestor);
 

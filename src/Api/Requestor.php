@@ -1,7 +1,6 @@
 <?php namespace Bouncefirst\Hiveage\Api;
 
 use Exception;
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
 class Requestor
@@ -9,18 +8,11 @@ class Requestor
     const PROTOCOL = 'https://';
     const API = '.hiveage.com/api/';
 	private $http;
-    private $name;
 
-	public function __construct($username, ClientInterface $client = null)
+	public function __construct(ClientInterface $client = null)
 	{
-        $this->name = $username;
-        if ($client === null) {
-            $this->http = new Client(['base_url' => self::PROTOCOL . $this->name . self::API]);
-        } else {
-            $this->http = $client;
-        }
-        $this->http->setDefaultOption('verify', false);
-        $this->http->setDefaultOption('headers/Accept' , 'application/json');
+        $client->setDefaultOption('headers/Accept' , 'application/json');
+        $this->http = $client;
 	}
 
     public function setKey($key)
@@ -28,11 +20,12 @@ class Requestor
         $this->http->setDefaultOption('auth', [$key, '']);
     }
 
-    public function get($model, $options = null)
+    public function get($model, $options = [])
     {
         try {
-            $request = $this->getHttp()->createRequest($model, $options);
-            return $request->getBody();
+            $request = $this->getHttp()->createRequest('GET', $model, $options);
+            $response = $this->getHttp()->send($request);
+            return $response->getBody();
         } catch (Exception $exception) {
             return false;
         }
@@ -41,5 +34,15 @@ class Requestor
     public function getHttp()
     {
         return $this->http;
+    }
+
+    public static function getApiUrl($name)
+    {
+        return self::PROTOCOL . $name . self::API;
+    }
+
+    public static function getApiUrlOption($name, $options = [])
+    {
+        return array_merge($options, ['base_url' => self::getApiUrl($name)]);
     }
 }

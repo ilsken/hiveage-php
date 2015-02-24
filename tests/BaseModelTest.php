@@ -18,7 +18,8 @@ class BaseModelTest extends PHPUnit_Framework_TestCase
 
     public function testSetRequestor()
     {
-        $requestor = $this->getMock('Bouncefirst\Hiveage\Api\Requestor', [], ['test']);
+        $http = $this->getMock('GuzzleHttp\ClientInterface');
+        $requestor = $this->getMock('Bouncefirst\Hiveage\Api\Requestor', [], [$http]);
         $base = $this->getMock('Bouncefirst\Hiveage\Models\Base');
         $base->setRequestor($requestor);
     }
