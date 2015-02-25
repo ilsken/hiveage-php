@@ -9,7 +9,7 @@ class Requestor
     const API = '.hiveage.com/api/';
     private $http;
 
-    public function __construct(ClientInterface $client = null)
+    public function __construct(ClientInterface $client)
     {
         $client->setDefaultOption('headers/Accept' , 'application/json');
         $this->http = $client;
