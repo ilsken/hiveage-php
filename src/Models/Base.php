@@ -93,7 +93,7 @@ abstract class Base implements ArrayAccess
         unset($this->$offset);
     }
 
-    public function all($perPage = 20, $page = 1, $order = 'asc')
+    public function all()
     {
         $class = get_called_class();
         $json = $this->getRequestor()->get($this->name);
