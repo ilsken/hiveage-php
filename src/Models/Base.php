@@ -42,8 +42,9 @@ abstract class Base implements ArrayAccess
     {
         $model = $this->getRequestor()->get($this->name, [$this->idType => $id]);
 
-        if ($model)
-            return $model;
+        if ($model) {
+                    return $model;
+        }
 
         return null;
     }
@@ -60,8 +61,9 @@ abstract class Base implements ArrayAccess
 
     public function __get($key)
     {
-        if (isset($this->attributes[$key]))
-            return $this->attributes[$key];
+        if (isset($this->attributes[$key])) {
+                    return $this->attributes[$key];
+        }
 
         return null;
     }
@@ -97,7 +99,9 @@ abstract class Base implements ArrayAccess
         $json = $this->getRequestor()->get($this->name);
         $objects = json_decode($json, true);
 
-        if (!is_array($objects)) return [];
+        if (!is_array($objects)) {
+            return [];
+        }
 
         $models = $objects[$this->namePlural];
         $modelArray = [];

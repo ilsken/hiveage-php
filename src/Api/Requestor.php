@@ -7,13 +7,13 @@ class Requestor
 {
     const PROTOCOL = 'https://';
     const API = '.hiveage.com/api/';
-	private $http;
+    private $http;
 
-	public function __construct(ClientInterface $client = null)
-	{
+    public function __construct(ClientInterface $client = null)
+    {
         $client->setDefaultOption('headers/Accept' , 'application/json');
         $this->http = $client;
-	}
+    }
 
     public function setKey($key)
     {

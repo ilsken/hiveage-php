@@ -16,8 +16,8 @@ class Hiveage
 {
     private $requestor;
 
-	public function __construct($orgName, $apiKey = '')
-	{
+    public function __construct($orgName, $apiKey = '')
+    {
         if (is_a($orgName, 'Bouncefirst\Hiveage\Api\Requestor')) {
             $this->requestor = $orgName;
             return;
@@ -28,7 +28,7 @@ class Hiveage
         $requestor = new Requestor($http);
         $requestor->setKey($apiKey);
         $this->requestor = $requestor;
-	}
+    }
 
     public function getRequestor()
     {
