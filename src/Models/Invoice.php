@@ -4,4 +4,5 @@ class Invoice extends Base
 {
     protected $name = 'invs';
     protected $namePlural = 'invoices';
+    protected $nameSingular = 'invoice';
 }
