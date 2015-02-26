@@ -38,15 +38,25 @@ abstract class Base implements ArrayAccess
 
     }
 
-    public function find($id)
+    public function find($hash = null)
     {
-        $model = $this->getRequestor()->get($this->name, [$this->idType => $id]);
-
-        if ($model) {
-                    return $model;
+        if (is_null($hash)) {
+            if (is_null($this->hash_key)) {
+                return null;
+            }
+            $hash = $this->hash_key;
         }
 
-        return null;
+        $class = get_called_class();
+        $json = $this->getRequestor()->get($this->name . '/' . $hash);
+        $objects = json_decode($json, true);
+
+        if (!is_array($objects)) {
+            return null;
+        }
+
+        $model = $objects[$this->nameSingular];
+        return new $class($model);
     }
 
     public function update()
@@ -107,7 +117,9 @@ abstract class Base implements ArrayAccess
         $modelArray = [];
 
         foreach ($models as $model) {
-            $modelArray[] = new $class($model);
+            $new = new $class($model);
+            $new->setRequestor($this->getRequestor());
+            $modelArray[] = $new;
         }
 
         return $modelArray;
