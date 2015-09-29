@@ -1,4 +1,6 @@
-<?php namespace Bouncefirst\Hiveage\Api;
+<?php
+
+namespace Bouncefirst\Hiveage\Api;
 
 use Exception;
 use GuzzleHttp\ClientInterface;
@@ -11,7 +13,7 @@ class Requestor
 
     public function __construct(ClientInterface $client)
     {
-        $client->setDefaultOption('headers/Accept' , 'application/json');
+        $client->setDefaultOption('headers/Accept', 'application/json');
         $this->http = $client;
     }
 
@@ -25,6 +27,7 @@ class Requestor
         try {
             $request = $this->getHttp()->createRequest('GET', $model, $options);
             $response = $this->getHttp()->send($request);
+
             return $response->getBody();
         } catch (Exception $exception) {
             return false;
@@ -38,7 +41,7 @@ class Requestor
 
     public static function getApiUrl($name)
     {
-        return self::PROTOCOL . $name . self::API;
+        return self::PROTOCOL.$name.self::API;
     }
 
     public static function getApiUrlOption($name, $options = [])

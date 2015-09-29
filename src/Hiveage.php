@@ -1,4 +1,6 @@
-<?php namespace Bouncefirst\Hiveage;
+<?php
+
+namespace Bouncefirst\Hiveage;
 
 use Bouncefirst\Hiveage\Api\Requestor;
 use Bouncefirst\Hiveage\Models\Bill;
@@ -20,6 +22,7 @@ class Hiveage
     {
         if (is_a($orgName, 'Bouncefirst\Hiveage\Api\Requestor')) {
             $this->requestor = $orgName;
+
             return;
         }
 
@@ -37,57 +40,65 @@ class Hiveage
 
     public function getConnections()
     {
-        $model = new Connection;
+        $model = new Connection();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getEstimates()
     {
-        $model = new Estimate;
+        $model = new Estimate();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getBills()
     {
-        $model = new Bill;
+        $model = new Bill();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getInvoices()
     {
-        $model = new Invoice;
+        $model = new Invoice();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getItems()
     {
-        $model = new Item;
+        $model = new Item();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getRecurringBills()
     {
-        $model = new RecurringBill;
+        $model = new RecurringBill();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getRecurringInvoices()
     {
-        $model = new RecurringInvoice;
+        $model = new RecurringInvoice();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
     public function getTasks()
     {
-        $model = new Task;
+        $model = new Task();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 
@@ -95,6 +106,7 @@ class Hiveage
     {
         $model = new Time();
         $model->setRequestor($this->getRequestor());
+
         return $model->all();
     }
 }

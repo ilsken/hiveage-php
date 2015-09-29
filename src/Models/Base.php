@@ -1,4 +1,6 @@
-<?php namespace Bouncefirst\Hiveage\Models;
+<?php
+
+namespace Bouncefirst\Hiveage\Models;
 
 use ArrayAccess;
 use Bouncefirst\Hiveage\Api\Requestor;
@@ -35,47 +37,45 @@ abstract class Base implements ArrayAccess
 
     public function create()
     {
-
     }
 
     public function find($hash = null)
     {
         if (is_null($hash)) {
             if (is_null($this->hash_key)) {
-                return null;
+                return;
             }
             $hash = $this->hash_key;
         }
 
         $class = get_called_class();
-        $json = $this->getRequestor()->get($this->name . '/' . $hash);
+        $json = $this->getRequestor()->get($this->name.'/'.$hash);
         $objects = json_decode($json, true);
 
         if (!is_array($objects)) {
-            return null;
+            return;
         }
 
         $model = $objects[$this->nameSingular];
+
         return new $class($model);
     }
 
     public function update()
     {
-
     }
 
     public function delete()
     {
-
     }
 
     public function __get($key)
     {
         if (isset($this->attributes[$key])) {
-                    return $this->attributes[$key];
+            return $this->attributes[$key];
         }
 
-        return null;
+        return;
     }
 
     public function __set($key, $value)

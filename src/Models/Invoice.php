@@ -1,4 +1,6 @@
-<?php namespace Bouncefirst\Hiveage\Models;
+<?php
+
+namespace Bouncefirst\Hiveage\Models;
 
 class Invoice extends Base
 {
