@@ -35,7 +35,7 @@ class RequestorTest extends PHPUnit_Framework_TestCase
     {
         $request = $this->getMock('GuzzleHttp\Message\RequestInterface');
         $response = $this->getMock('GuzzleHttp\Message\ResponseInterface');
-        $response->expects($this->once())->method('getBody')->willThrowException(new Exception);
+        $response->expects($this->once())->method('getBody')->willThrowException(new Exception());
         $client = $this->getMock('GuzzleHttp\ClientInterface', [], Requestor::getApiUrlOption('test'));
         $client->expects($this->once())->method('createRequest')->will($this->returnValue($request));
         $client->expects($this->once())->method('send')->will($this->returnValue($response));
