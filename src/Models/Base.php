@@ -11,6 +11,8 @@ abstract class Base implements ArrayAccess
     private $requestor;
     protected $name;
     protected $namePlural;
+    protected $nameSingular;
+    protected $hashKey;
     protected $idType;
 
     public function __construct($attributes = [])
@@ -42,10 +44,10 @@ abstract class Base implements ArrayAccess
     public function find($hash = null)
     {
         if (is_null($hash)) {
-            if (is_null($this->hash_key)) {
+            if (is_null($this->hashKey)) {
                 return;
             }
-            $hash = $this->hash_key;
+            $hash = $this->hashKey;
         }
 
         $class = get_called_class();
